@@ -52,3 +52,13 @@ const cardArray = [
 cardArray.sort(() => 0.5 - Math.random())
 
 const gridDisplay = document.querySelector('#grid');
+const createBoard = () => {
+    for (let i = 0; i < cardArray.length; i++) {
+        const card = document.createElement('img');
+        card.setAttribute('src', 'images/pizza.png');
+        card.setAttribute('data-id', i);
+        gridDisplay.append(card);
+        console.log(card);
+    }
+}
+createBoard();
