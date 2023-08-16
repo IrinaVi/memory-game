@@ -5,7 +5,7 @@ const cardArray = [
     },
     {
         name: 'cheesburgers',
-        img: 'images/cheesburgers.png',
+        img: 'images/cheeseburger.png',
     },
     {
         name: 'hotdog',
@@ -29,7 +29,7 @@ const cardArray = [
     },
     {
         name: 'cheesburgers',
-        img: 'images/cheesburgers.png',
+        img: 'images/cheeseburger.png',
     },
     {
         name: 'hotdog',
@@ -50,12 +50,13 @@ const cardArray = [
 ]
 
 cardArray.sort(() => 0.5 - Math.random())
+const cardsChosen = []
 
 const gridDisplay = document.querySelector('#grid');
 const createBoard = () => {
     for (let i = 0; i < cardArray.length; i++) {
         const card = document.createElement('img');
-        card.setAttribute('src', 'images/pizza.png');
+        card.setAttribute('src', 'images/blank.png');
         card.setAttribute('data-id', i);
         card.addEventListener('click', flipCard)
         gridDisplay.append(card);
@@ -66,6 +67,8 @@ createBoard();
 
 function flipCard() {
     const cardId = this.getAttribute('data-id');
+    cardsChosen.push(cardArray[cardId].name)
     console.log(cardArray[cardId].name);
     console.log(cardId);
+    this.setAttribute('src', cardArray[cardId].img)
 }
