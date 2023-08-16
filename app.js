@@ -57,8 +57,15 @@ const createBoard = () => {
         const card = document.createElement('img');
         card.setAttribute('src', 'images/pizza.png');
         card.setAttribute('data-id', i);
+        card.addEventListener('click', flipCard)
         gridDisplay.append(card);
         console.log(card);
     }
 }
 createBoard();
+
+function flipCard() {
+    const cardId = this.getAttribute('data-id');
+    console.log(cardArray[cardId].name);
+    console.log(cardId);
+}
