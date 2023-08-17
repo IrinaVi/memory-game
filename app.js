@@ -50,7 +50,7 @@ const cardArray = [
 ]
 
 cardArray.sort(() => 0.5 - Math.random())
-console.log(cardArray);
+const resultDisplay = document.querySelector('#result')
 let cardsChosen = []
 let cardsChosenIds = []
 let cardsWon = []
@@ -73,10 +73,13 @@ function checkMatch() {
     console.log(cardsChosenIds);
     const optionOneId = cardsChosenIds[0]
     const optionTwoId = cardsChosenIds[1]
+    console.log(optionOneId)
+    console.log(optionTwoId)
     if (optionOneId === optionTwoId) {
         alert('You have clicked the same image!')
-    }
-    if (cardsChosen[0] === cardsChosen[1]) {
+        cards[optionOneId].setAttribute('src', 'images/blank.png')
+        cards[optionTwoId].setAttribute('src', 'images/blank.png')
+    } else if (cardsChosen[0] === cardsChosen[1]) {
         alert('You found Match')
         console.log(cards[cardsChosenIds[0]])
         cards[optionOneId].setAttribute('src', 'images/white.png')
@@ -90,8 +93,14 @@ function checkMatch() {
         alert('sorry, try again')
     }
 
+    resultDisplay.textContent = cardsWon.length
+    console.log(resultDisplay)
     cardsChosen = []
     cardsChosenIds = []
+
+    if (cardsWon.length == cardArray.length/2) {
+        resultDisplay.textContent = "Congratulations"
+    }
 }
 
 function flipCard() {
@@ -104,4 +113,5 @@ function flipCard() {
     if (cardsChosen.length === 2) {
         setTimeout(checkMatch, 500);
     }
+
 }
