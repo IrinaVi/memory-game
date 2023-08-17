@@ -71,15 +71,23 @@ createBoard();
 function checkMatch() {
     const cards = document.querySelectorAll('img');
     console.log(cardsChosenIds);
+    const optionOneId = cardsChosenIds[0]
+    const optionTwoId = cardsChosenIds[1]
+    if (optionOneId === optionTwoId) {
+        alert('You have clicked the same image!')
+    }
     if (cardsChosen[0] === cardsChosen[1]) {
         alert('You found Match')
         console.log(cards[cardsChosenIds[0]])
-        cards[cardsChosenIds[0]].setAttribute('src', 'images/white.png')
-        cards[cardsChosenIds[1]].setAttribute('src', 'images/white.png')
-        cards[cardsChosenIds[0]].removeEventListener('click', flipCard)
-        cards[cardsChosenIds[1]].removeEventListener('click', flipCard)
+        cards[optionOneId].setAttribute('src', 'images/white.png')
+        cards[optionTwoId].setAttribute('src', 'images/white.png')
+        cards[optionOneId].removeEventListener('click', flipCard)
+        cards[optionTwoId].removeEventListener('click', flipCard)
         cardsWon.push(cardsChosen)
     }
+
+    cardsChosen = []
+    cardsChosenIds = []
 }
 
 function flipCard() {
